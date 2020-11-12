@@ -17,7 +17,7 @@ function publish() {
 socket.on('receiveMessageEvent', function (data) {
     let now = new Date();
     $('#thread').prepend('<p>'+data.userName + 'さん：'+ data.message + '</p>');
-    $('#thread').prepend('<p>'+ +  + '</p>');
+    $('#thread').prepend('<p><font size = "1">'+ toFormat('H:MI') + '</p>');
     // 投稿した後に投稿文を空にする
     $('#message').val('');
 });
