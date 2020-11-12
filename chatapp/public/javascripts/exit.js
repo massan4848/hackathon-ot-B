@@ -3,14 +3,16 @@
 // 退室メッセージをサーバに送信する
 function exit() {
     // ユーザ名取得
-    const userName = '';
+    const userName = $('#userName').val();
     // 退室メッセージイベントを送信する
-
-    // 退室
-    location.href = '/';
+    if( confirm("本当に退出しますか？") ) {
+        socket.emit("exitEvent", userName);
+        // 退室
+        location.href = '/';
+    }
 }
 
 // サーバから受信した退室メッセージを画面上に表示する
-socket.on('', function (data) {
-    $('#thread').prepend('<p>' + '</p>');
+socket.on('exitOtherEvent', function (data) {
+    $('#thread').prepend('<p>' + data + '</p>');
 });
