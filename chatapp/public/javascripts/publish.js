@@ -13,6 +13,16 @@ function publish() {
     return false;
 }
 
+//Enterキーを押したとき投稿が送信されるようにする処理
+$(document).keypress(function(event){
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+        publish();
+        // 投稿した後に投稿文を空にする
+        $('#message').val('');
+    }
+});
+
 // サーバから受信した投稿メッセージを画面上に表示する
 socket.on('receiveMessageEvent', function (data) {
     let now = new Date();
