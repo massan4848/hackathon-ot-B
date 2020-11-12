@@ -7,8 +7,7 @@ function publish() {
     // 入力されたメッセージを取得
     const message = $('#message').val();
     // 投稿内容を送信
-    if (message !== ''){
-        // alert(message);
+    if ( message !== ''){
         socket.emit('sendMessageEvent',{message,userName});
     }
     return false;
