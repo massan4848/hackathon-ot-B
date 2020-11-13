@@ -17,8 +17,6 @@ $(document).keypress(function(event){
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
         publish();
-        // 投稿した後に投稿文を空にする
-        $('#message').val('');
     }
 });
 
