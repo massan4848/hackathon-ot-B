@@ -8,6 +8,8 @@ function publish() {
     // 投稿内容を送信
     if (message.trim() !== '') {
         socket.emit('sendMessageEvent', { message, userName });
+        audio = new Audio();
+        audio.play();
     }
     return false;
 }

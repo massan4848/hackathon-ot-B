@@ -81,3 +81,13 @@ div {
 .room-exit_button {
 
 }
+
+/*メモ(下書き)に関する*/
+#input_plural input.form-control {
+    display: inline-block;
+    width: 75%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: #555;
+}
