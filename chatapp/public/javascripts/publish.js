@@ -47,15 +47,28 @@ $(document).keypress(function (event) {
 socket.on('receiveMessageEvent', function (data) {
     const sortValue = $("option:selected").val()
     const array = Array.from($('#thread').children())
+    const myName = $('#userName').val();
 
     if (array.length && sortValue === "down") {
         const index = parseInt($(array[0]).attr("id")) + 1
-        $('#thread').prepend(`<p id=${index}>` + data.userName + 'さん：' + data.message + `<font size = "1">` + " " + data.now + '</font>' + '</p>');
+        if (data.userName === myName) {
+            $('#thread').prepend(`<p id=${index} class="mycomment">` + data.userName + 'さん：' + data.message + `<font size = "1">` + " " + data.now + '</font>' + '</p>');
+        } else {
+            $('#thread').prepend(`<p id=${index} class="yourcomment">` + data.userName + 'さん：' + data.message + `<font size = "1">` + " " + data.now + '</font>' + '</p>');
+        }
     } else if (array.length && sortValue === "up") {
         const index = parseInt($(array[array.length - 1]).attr("id")) + 1
-        $('#thread').append(`<p id=${index}>` + data.userName + 'さん：' + data.message + `<font size = "1">` + " " + data.now + '</font>' + '</p>');
+        if (data.userName === myName) {
+            $('#thread').append(`<p id=${index} class="mycomment">` + data.userName + 'さん：' + data.message + `<font size = "1">` + " " + data.now + '</font>' + '</p>');
+        } else {
+            $('#thread').append(`<p id=${index} class="yourcomment">` + data.userName + 'さん：' + data.message + `<font size = "1">` + " " + data.now + '</font>' + '</p>');
+        }
     } else {
-        $('#thread').prepend('<p id=1>' + data.userName + 'さん：' + data.message + `<font size = "1">` + " " + data.now + '</font>' + '</p>');
+        if (data.userName === myName) {
+            $('#thread').prepend('<p id=1 class="mycomment">' + data.userName + 'さん：' + data.message + `<font size = "1">` + " " + data.now + '</font>' + '</p>');
+        } else {
+            $('#thread').prepend('<p id=1 class="yourcomment">' + data.userName + 'さん：' + data.message + `<font size = "1">` + " " + data.now + '</font>' + '</p>');
+        }
     }
     // 投稿した後に投稿文を空にする
     $('#message').val('');

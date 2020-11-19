@@ -91,3 +91,12 @@ div {
     font-size: 14px;
     color: #555;
 }
+
+.mycomment{
+    background-color: cornflowerblue;
+    text-align: right;
+}
+.yourcomment{
+    background-color: darkkhaki;
+    text-align: left;
+}
