@@ -6,7 +6,7 @@
 
 
         <!-- 4列をサイドメニューに割り当て -->
-        <ul class="nav flex-column bg-danger">
+        <ul class="nav flex-column bg-danger padding">
             <li class="nav-item">
                 <a class="nav-link active"
                     href="#">Active</a>
@@ -23,7 +23,7 @@
                 <a class="nav-link disabled"
                     href="#">Disabled</a>
             </li>
-            <div class="room-exit">
+            <div class="room-exit padding">
                 <input type="button"
                     value="退室する"
                     class="common-button room-exit_button"
@@ -32,16 +32,17 @@
         </ul>
 
         <!-- 残り8列はコンテンツ表示部分として使う -->
-        <div class="col-xs-8">
+        <div class="col-xs-8 padding">
             <form method="post"
                 action="/"
                 onsubmit="return false;">
 
-                <div class="room-thread">
+                <div class="room-thread scroll-1">
                     <div id="thread"></div>
                 </div>
 
-                <div id="input_pluralBox">
+                <div id="input_pluralBox" class="scroll-2 padding-b-and-t">
+                    <p>memo</p>
                     <div id="memo-thread"></div>
                 </div>
 
@@ -59,16 +60,15 @@
                 </div>
 
 
-                <div id="input_plural">
+                <div id="input_plural-message">
                     <div class="room-message">
-                        <!--<textarea id="message" rows="4" class="room-message_textarea" placeholder="投稿文を入力してください"></textarea>
-                                --><input id="message"
+                        <input id="message"
                             type="text"
                             class="form-control"
                             placeholder="投稿文を入力してください">
                     </div>
 
-                    <div class="room-submit">
+                    <div class="room-submit padding-b-and-t">
                         <input type="button"
                             value="投稿"
                             class="common-button room-publish_button"
@@ -82,6 +82,7 @@
                             <option value="up">昇順</option>
                         </select>
                     </div>
+                </div>
             </form>
         </div>
     </div>

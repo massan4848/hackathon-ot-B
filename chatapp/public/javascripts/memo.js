@@ -40,6 +40,8 @@ $(document).on("click", ".add", function() {
     // 投稿内容を送信
     if (message.trim() !== '') {
         socket.emit('sendMessageEvent', { message, userName });
+        const audio = new Audio("../audio/toukou.wav");
+        audio.play();
     }
     $(this).parent().remove();
 });
