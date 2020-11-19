@@ -9,7 +9,8 @@ function publish() {
     // 投稿内容を送信
     if (message.trim() !== '') {
         socket.emit('sendMessageEvent', { message, userName });
-        const audio = new Audio();
+        //投稿音
+        const audio = new Audio("../audio/toukou.wav");
         audio.play();
     }
     return false;
@@ -83,6 +84,9 @@ socket.on('receiveMessageEvent', function (data) {
     const sortValue = $("option:selected").val()
     const array = Array.from($('#thread').children())
     const myName = $('#userName').val();
+    //通知音
+    const audio = new Audio("../audio/tuuti.wav");
+    audio.play();
 
     if (array.length && sortValue === "down") {
         const index = parseInt($(array[0]).attr("id")) + 1
