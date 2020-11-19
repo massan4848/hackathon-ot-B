@@ -33,3 +33,8 @@ socket.on('receiveMessageEvent', function (data) {
     // 投稿した後に投稿文を空にする
     $('#message').val('');
 });
+
+$(room).addEventListener(change,()=>{
+    const myName = $('#userName').val();
+    socket.emit("join",$("#rooms").val());
+})
