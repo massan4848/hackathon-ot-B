@@ -47,10 +47,15 @@
 
 
                 <div class="room-login_user">
-                    ログインユーザ：{{userName}}さん
+                    ログインユーザ：<span id="currentName">{{userName}}</span>さん
                     <input id="userName"
-                        type="hidden"
+                        {{!-- type="hidden" --}}
                         value="{{userName}}">
+                    <input type="button"
+                        value="名前変更"
+                        class="common-button room-exit_button"
+                        onclick="rename();"
+                        id="renameSubmit">
                 </div>
 
 

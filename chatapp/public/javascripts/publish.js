@@ -15,6 +15,41 @@ function publish() {
     return false;
 }
 
+//名前変更機能
+//新しい名前の取得
+const newName = document.getElementById('userName');
+//今の名前の取得
+const currentName = document.getElementById('currentName');
+const renameSubmit = document.getElementById('renameSubmit');
+//隠す名前編集のフォームを隠す
+renameSubmit.style.display ="none";
+newName.style.display ="none";
+//名前をクリックしたときにフォームを出させる
+currentName.addEventListener('click',() => {
+    if(renameSubmit.style.display === "none"){
+        renameSubmit.style.display ="block";
+        newName.style.display = "block"
+    }
+    else{
+        renameSubmit.style.display ="none";
+        newName.style.display = "none"
+    }
+})
+
+//名前を変更する
+function rename(){
+    //空白を除外する
+    if (newName.value.trim() !== ''){
+        currentName.innerHTML = newName.value
+    }
+    else{
+        //空白の時にnewNameを元の名前に戻す
+        newName.value = currentName.innerHTML
+    }
+    renameSubmit.style.display ="none";
+    newName.style.display ="none";
+}
+
 
 $('#sort-select').change(function () {
     const value = $("option:selected").val();
