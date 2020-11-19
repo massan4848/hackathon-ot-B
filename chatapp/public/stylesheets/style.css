@@ -10,7 +10,7 @@ a {
 }
 
 div {
-    margin: 20px 0px;
+    margin: 20px;
 }
 
 .row {
@@ -87,7 +87,7 @@ div {
     display: inline-block;
     width: 75%;
     height: 34px;
-    padding: 6px 12px;
+    padding: 6px 12px;*/
     font-size: 14px;
     color: #555;
 }
