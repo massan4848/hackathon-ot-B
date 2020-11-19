@@ -13,6 +13,12 @@ function publish() {
     return false;
 }
 
+$('#sort-select').change(function () {
+    const value = $("option:selected").val();
+    console.log(value)
+    // TODO
+})
+
 // サーバから受信した投稿メッセージを画面上に表示する
 socket.on('receiveMessageEvent', function (data) {
     let now = new Date();
