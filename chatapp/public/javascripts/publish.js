@@ -1,5 +1,6 @@
 'use strict';
 // 投稿メッセージをサーバに送信する
+
 function publish() {
     // ユーザ名を取得
     const userName = $('#userName').val();
@@ -8,7 +9,7 @@ function publish() {
     // 投稿内容を送信
     if (message.trim() !== '') {
         socket.emit('sendMessageEvent', { message, userName });
-        audio = new Audio();
+        const audio = new Audio();
         audio.play();
     }
     return false;
@@ -17,11 +18,24 @@ function publish() {
 
 $('#sort-select').change(function () {
     const value = $("option:selected").val();
-    console.log(value)
-    // TODO
+    const array = Array.from($('#thread').children())
+    const first = $(array[0]).attr("id")
+    const last = $(array[array.length - 1]).attr("id")
+
+    if (value === "up" && first > last) {
+        $('#thread').empty()
+        $.each(array.reverse(), function (index, element) {
+            $('#thread').append($(element))
+        })
+    } else if (value === "down" && first < last) {
+        $('#thread').empty()
+        $.each(array, function (index, element) {
+            $('#thread').prepend($(element))
+        })
+    }
 })
 
-//Enterキーを押したとき投稿が送信されるようにする処理
+// Enterキーを押したとき投稿が送信されるようにする処理
 $(document).keypress(function (event) {
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if (keycode == '13') {
@@ -31,7 +45,18 @@ $(document).keypress(function (event) {
 
 // サーバから受信した投稿メッセージを画面上に表示する
 socket.on('receiveMessageEvent', function (data) {
-    $('#thread').prepend('<p>' + data.userName + 'さん：' + data.message + '<font size = "1">' + " " + data.now + '</font>' + '</p>');
+    const sortValue = $("option:selected").val()
+    const array = Array.from($('#thread').children())
+
+    if (array.length && sortValue === "down") {
+        const index = parseInt($(array[0]).attr("id")) + 1
+        $('#thread').prepend(`<p id=${index}>` + data.userName + 'さん：' + data.message + `<font size = "1">` + " " + data.now + '</font>' + '</p>');
+    } else if (array.length && sortValue === "up") {
+        const index = parseInt($(array[array.length - 1]).attr("id")) + 1
+        $('#thread').append(`<p id=${index}>` + data.userName + 'さん：' + data.message + `<font size = "1">` + " " + data.now + '</font>' + '</p>');
+    } else {
+        $('#thread').prepend('<p id=1>' + data.userName + 'さん：' + data.message + `<font size = "1">` + " " + data.now + '</font>' + '</p>');
+    }
     // 投稿した後に投稿文を空にする
     $('#message').val('');
 });
