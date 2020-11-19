@@ -2,6 +2,16 @@
     <div class="row">
         <h1>Node Chat サンプル</h1>
     </div>
+
+    <canvas id="canvas"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@latest/build/qrcode.min.js"></script>
+    <script>
+    QRCode.toCanvas(document.getElementById('canvas'), 'http://3.114.101.35:10069/guest', function (error) {
+        if (error) console.error(error)
+        console.log('success!');
+    })
+    </script>
     <div class="row">
         <form method="post"
             action="/room">
