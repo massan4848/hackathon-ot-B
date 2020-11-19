@@ -36,10 +36,13 @@ currentName.addEventListener('click',() => {
     }
 })
 
+
+
 //名前を変更する
 function rename(){
     //空白を除外する
-    if (newName.value.trim() !== ''){
+    if (newName.value.trim() !== '' && newName.value !== currentName.innerHTML){
+        socket.emit('renameMessageEvent', {currentName: currentName.innerHTML, newName: newName.value });
         currentName.innerHTML = newName.value
     }
     else{
@@ -49,6 +52,11 @@ function rename(){
     renameSubmit.style.display ="none";
     newName.style.display ="none";
 }
+
+socket.on('renameReceiveMessageEvent', function (data) {
+    $('#thread').prepend('<p>' + data + '</p>');
+});
+
 
 
 $('#sort-select').change(function () {
