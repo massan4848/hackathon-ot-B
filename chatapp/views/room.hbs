@@ -3,49 +3,82 @@
         <h1>Node Chat チャットルーム</h1>
     </div>
     <div class="row">
-        <form method="post"
-            action="/">
-            <div class="room-login_user">
-                ログインユーザ：{{userName}}さん
-                <input id="userName"
-                    type="hidden"
-                    value="{{userName}}">
-            </div>
-            <div class="room-message">
-                <textarea id="message"
-                    rows="4"
-                    class="room-message_textarea"
-                    placeholder="投稿文を入力してください"></textarea>
-            </div>
-            <div class="room-submit">
-                <input type="button"
-                    value="投稿"
-                    class="common-button room-publish_button"
-                    onclick="publish();">
-                <input type="button"
-                    value="メモ"
-                    class="common-button room-memo_button"
-                    onclick="memo();">
-                <select id="sort-select">
-                    <option value="down">降順</option>
-                    <option value="up">昇順</option>
-                </select>
-            </div>
-            <div class="room-memo-thread">
-                <div id="input_pluralBox">
-                    <div id="memo-thread"></div>
-                </div>
-            </div>
-            <div class="room-thread">
-                <div id="thread"></div>
-            </div>
+
+
+        <!-- 4列をサイドメニューに割り当て -->
+        <ul class="nav flex-column bg-danger">
+            <li class="nav-item">
+                <a class="nav-link active"
+                    href="#">Active</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                    href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                    href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled"
+                    href="#">Disabled</a>
+            </li>
             <div class="room-exit">
                 <input type="button"
                     value="退室する"
                     class="common-button room-exit_button"
                     onclick="exit();">
             </div>
-        </form>
+        </ul>
+
+        <!-- 残り8列はコンテンツ表示部分として使う -->
+        <div class="col-xs-8">
+            <form method="post"
+                action="/"
+                onsubmit="return false;">
+
+                <div class="room-thread">
+                    <div id="thread"></div>
+                </div>
+
+                <div id="input_pluralBox">
+                    <div id="memo-thread"></div>
+                </div>
+
+
+                <div class="room-login_user">
+                    ログインユーザ：{{userName}}さん
+                    <input id="userName"
+                        type="hidden"
+                        value="{{userName}}">
+                </div>
+
+
+                <div id="input_plural">
+                    <div class="room-message">
+                        <!--<textarea id="message" rows="4" class="room-message_textarea" placeholder="投稿文を入力してください"></textarea>
+                                --><input id="message"
+                            type="text"
+                            class="form-control"
+                            placeholder="投稿文を入力してください">
+                    </div>
+
+                    <div class="room-submit">
+                        <input type="button"
+                            value="投稿"
+                            class="common-button room-publish_button"
+                            onclick="publish();">
+                        <input type="button"
+                            value="メモ"
+                            class="common-button room-memo_button"
+                            onclick="memo();">
+                        <select id="sort-select">
+                            <option value="down">降順</option>
+                            <option value="up">昇順</option>
+                        </select>
+                    </div>
+            </form>
+        </div>
     </div>
 </div>
 
