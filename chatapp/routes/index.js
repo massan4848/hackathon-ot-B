@@ -14,4 +14,10 @@ router.post('/room', function (request, response, next) {
     response.render('room', { userName: request.body.userName });
 });
 
+router.get('/guest', function (request, response, next) {
+    request.body.userName = 'guest';
+    console.log('ユーザ名：' + request.body.userName);
+    response.render('room', { userName: request.body.userName });
+});
+
 module.exports = router;
