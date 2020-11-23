@@ -10,7 +10,6 @@ a {
 }
 
 div {
-    margin: 20px;
 }
 
 .row {
@@ -82,12 +81,22 @@ div {
 
 }
 
+/*メッセージを書く欄に関する*/
+#input_plural-message input.form-control {
+    display: inline-block;
+    width: 500px;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: #555;
+}
+
 /*メモ(下書き)に関する*/
 #input_plural input.form-control {
     display: inline-block;
-    width: 75%;
+    width: 400px;
     height: 34px;
-    padding: 6px 12px;*/
+    padding: 6px 12px;
     font-size: 14px;
     color: #555;
 }
@@ -100,3 +109,44 @@ div {
     background-color: lightcyan;
     text-align: left;
 }
+
+.padding{
+    margin: 20px;
+}
+
+.padding-b-and-t{
+    margin: 20px 0px;
+}
+
+/*
+scroll-1,2 はそれぞれメッセージ表示画面，下書き画面のスクロールに関する処理
+参考サイト：https://techacademy.jp/magazine/30983
+*/
+.scroll-1 {
+
+    width: 700px;
+  
+    height: 400px;
+  
+    overflow: scroll;
+  
+    border: rgb(255, 167, 201) 5px solid;
+
+    overflow-x: hidden;
+  
+  }
+
+
+.scroll-2 {
+
+    width: 700px;
+  
+    height: 200px;
+  
+    overflow: scroll;
+  
+    border: rgb(255, 167, 201) 5px solid;
+
+    overflow-x: hidden;
+  
+  }

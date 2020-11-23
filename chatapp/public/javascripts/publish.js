@@ -9,11 +9,55 @@ function publish() {
     // 投稿内容を送信
     if (message.trim() !== '') {
         socket.emit('sendMessageEvent', { message, userName });
-        const audio = new Audio();
+        //投稿音
+        const audio = new Audio("../audio/toukou.wav");
         audio.play();
     }
     return false;
 }
+
+//名前変更機能
+//新しい名前の取得
+const newName = document.getElementById('userName');
+//今の名前の取得
+const currentName = document.getElementById('currentName');
+const renameSubmit = document.getElementById('renameSubmit');
+//隠す名前編集のフォームを隠す
+renameSubmit.style.display ="none";
+newName.style.display ="none";
+//名前をクリックしたときにフォームを出させる
+currentName.addEventListener('click',() => {
+    if(renameSubmit.style.display === "none"){
+        renameSubmit.style.display ="block";
+        newName.style.display = "block"
+    }
+    else{
+        renameSubmit.style.display ="none";
+        newName.style.display = "none"
+    }
+})
+
+
+
+//名前を変更する
+function rename(){
+    //空白を除外する
+    if (newName.value.trim() !== '' && newName.value !== currentName.innerHTML){
+        socket.emit('renameMessageEvent', {currentName: currentName.innerHTML, newName: newName.value });
+        currentName.innerHTML = newName.value
+    }
+    else{
+        //空白の時にnewNameを元の名前に戻す
+        newName.value = currentName.innerHTML
+    }
+    renameSubmit.style.display ="none";
+    newName.style.display ="none";
+}
+
+socket.on('renameReceiveMessageEvent', function (data) {
+    $('#thread').prepend('<p>' + data + '</p>');
+});
+
 
 
 $('#sort-select').change(function () {
@@ -48,6 +92,9 @@ socket.on('receiveMessageEvent', function (data) {
     const sortValue = $("option:selected").val()
     const array = Array.from($('#thread').children())
     const myName = $('#userName').val();
+    //通知音
+    const audio = new Audio("../audio/tuuti.wav");
+    audio.play();
 
     if (array.length && sortValue === "down") {
         const index = parseInt($(array[0]).attr("id")) + 1
