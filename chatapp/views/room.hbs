@@ -7,22 +7,18 @@
 
         <!-- 4列をサイドメニューに割り当て -->
         <ul class="nav flex-column bg-danger">
-            <li class="nav-item">
-                <a class="nav-link active"
-                    href="#">Active</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link"
-                    href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link"
-                    href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled"
-                    href="#">Disabled</a>
-            </li>
+        <form class="form-inline">
+            <div class="form-group">
+                <label class="roomLabel" for="rooms">部屋：</label>
+                <select class="form-control" id="rooms">
+                    <option value="room01">部屋01</option>
+                    <option value="room02">部屋02</option>
+                </select>
+                <input type="hidden" class="form-control" id="msgForm" value="{{userName}}">
+            </div>
+            <input type="button" class="btn btn-primary" id="sendButton" value="変更">
+        </form><br>
+            <div id="roomstat">現在は入室していません</div>
             <div class="room-exit">
                 <input type="button"
                     value="退室する"

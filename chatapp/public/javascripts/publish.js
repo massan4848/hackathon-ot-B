@@ -74,7 +74,23 @@ socket.on('receiveMessageEvent', function (data) {
     $('#message').val('');
 });
 
-$(room).addEventListener(change,()=>{
+// スレッドの変更
+var tmp_room = undefined;
+$("#sendButton").click(function(e) {
+    var selectRoom = $("#rooms").val();
     const myName = $('#userName').val();
-    socket.emit("join",$("#rooms").val());
-})
+    if(selectRoom !== tmp_room) {
+        $("#thread").empty();
+        socket.emit("leave",{value:tmp_room});
+        socket.emit("join", {value : selectRoom, name : myName});
+        roomchange(selectRoom);
+       tmp_room = selectRoom;    
+    }
+    e.preventDefault();
+});
+
+function roomchange(data){
+    if(data === "room01") $("#roomstat").text("現在部屋01です");
+    else if(data === "room02") $("#roomstat").text("現在部屋02です");
+    else $("#roomstat").text("現在入室していません");
+}
