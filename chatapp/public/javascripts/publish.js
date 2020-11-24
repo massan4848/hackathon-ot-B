@@ -10,8 +10,8 @@ function publish() {
     if (message.trim() !== '') {
         socket.emit('sendMessageEvent', { message, userName });
         //投稿音
-        const audio = new Audio("../audio/toukou.wav");
-        audio.play();
+        //const audio = new Audio("../audio/toukou.wav");
+        //audio.play();
     }
     return false;
 }
@@ -79,14 +79,6 @@ $('#sort-select').change(function () {
     }
 })
 
-// Enterキーを押したとき投稿が送信されるようにする処理
-$(document).keypress(function (event) {
-    var keycode = (event.keyCode ? event.keyCode : event.which);
-    if (keycode == '13') {
-        publish();
-    }
-});
-
 //昇順降順ボタンの挙動
 function up_down(){
     const updown = document.getElementById("sort-select");
@@ -103,13 +95,16 @@ socket.on('receiveMessageEvent', function (data) {
     const array = Array.from($('#thread').children())
     const myName = $('#userName').val();
     //通知音
-    const audio = new Audio("../audio/tuuti.wav");
+    const audio = new Audio("../audio/pipi.wav");
     audio.play();
-
+    //デフォルトメッセージ(チャットを表示します)の削除
+    if($('#thread .defo').length!=0){
+        $('#thread .defo').remove();
+    }
     if (array.length && sortValue === "down") {
         const index = parseInt($(array[0]).attr("id")) + 1
         if (data.userName === myName) {
-            $('#thread').prepend(`<p id=${index} class="mycomment">` + data.userName + 'さん：' + data.message + `<font size = "1">` + " " + data.now + '</font>' + '</p>');
+            $('#thread').prepend(`<p id=${index} class="yourcomment">` + data.userName + 'さん：' + data.message + `<font size = "1">` + " " + data.now + '</font>' + '</p>');
         } else {
             $('#thread').prepend(`<p id=${index} class="yourcomment">` + data.userName + 'さん：' + data.message + `<font size = "1">` + " " + data.now + '</font>' + '</p>');
         }
@@ -138,6 +133,8 @@ $("#sendButton").click(function(e) {
     const myName = $('#userName').val();
     if(selectRoom !== tmp_room) {
         $("#thread").empty();
+        //デフォルトメッセージ(チャットを表示します)の表示
+        $("#thread").prepend('<p class="defo">チャットを表示します</p>')
         socket.emit("leave",{value:tmp_room});
         socket.emit("join", {value : selectRoom, name : myName});
         roomchange(selectRoom);

@@ -6,8 +6,8 @@
 
 
         <!-- 4列をサイドメニューに割り当て -->
-        <ul class="nav flex-column bg-danger">
-        <form class="form-inline">
+        <ul class="nav flex-column menu-bar">
+        <form class="form-inline padding">
             <div class="form-group">
                 <label class="roomLabel" for="rooms">部屋：</label>
                 <select class="form-control" id="rooms">
@@ -18,28 +18,27 @@
             </div>
             <input type="button" class="btn btn-primary" id="sendButton" value="変更">
         </form><br>
-            <div id="roomstat">現在は入室していません</div>
-            <div class="room-exit">
+            <div id="roomstat" class="padding">現在は入室していません</div>
+            <div class="room-exit padding">
                 <input type="button"
                     value="退室する"
-                    class="common-button room-exit_button"
+                    class="btn btn-info"
                     onclick="exit();">
             </div>
         </ul>
 
         <!-- 残り8列はコンテンツ表示部分として使う -->
-        <div class="col-xs-8 padding">
+        <div class="col-xs-8 padding-r-and-l">
             <form method="post"
                 action="/"
                 onsubmit="return false;">
 
-                <div class="room-thread scroll-1">
-                    <div id="thread"></div>
+                <div class="room-thread scrollArea scroll-1">
+                    <div id="thread"><p class="defo">チャットを表示します</p></div>
                 </div>
-
-                <div id="input_pluralBox" class="scroll-2 padding-b-and-t">
-                    <p>memo</p>
-                    <div id="memo-thread"></div>
+                <p></p>
+                <div id="input_pluralBox" class="scrollArea scroll-2 padding-b-and-t">
+                    <div id="memo-thread"><p>メモを表示します<p></p></div>
                 </div>
 
 
@@ -56,7 +55,7 @@
                 </div>
 
 
-                <div id="input_plural-message" class="message_inline">
+                <div id="input_plural-message" class="message_inline padding">
                     <div class="room-message message_inline">
                         <input id="message"
                             type="text"
@@ -77,12 +76,6 @@
                             <option value="down">降順</option>
                             <option value="up">昇順</option>
                         </select>
-                        <!--昇順降順選択をボタンにしたい
-                        <input type="image"
-                            id="sort-select"
-                            src="../img/exit.jpg"
-                            onclick="up_down();"
-                            value="down">-->
                     </div>
                 </div>
             </form>

@@ -2,8 +2,11 @@
  * 画面全体に関する設定
  */
 body {
-    font: 14px "Lucida Grande", Meiryo, Helvetica, Arial, sans-serif;
+    font: "Lucida Grande", Meiryo, Helvetica, Arial, sans-serif;
+    color: #575757;
+    line-height: 1.7;
     background-color: rgb(255, 234, 249);
+    /*background-color: rgb(78, 78, 78);*/
 }
 
 a {
@@ -11,6 +14,13 @@ a {
 }
 
 div {
+}
+
+.container{
+    width: 100%;
+    max-width: 960px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .row {
@@ -22,6 +32,10 @@ div {
  */
 .common-button {
     border-radius: 5px;
+    color:  rgb(255, 255, 255);
+    background-color:  rgb(255, 15, 135);
+    border: none;
+    outline:0;
 }
 
 /*
@@ -83,7 +97,8 @@ div {
 }
 
 .room-exit_button {
-
+    color:  rgb(255, 15, 135);
+    background-color:  rgb(255, 255, 255);
 }
 .message_inline{
     display: inline-block;
@@ -118,6 +133,7 @@ div {
     text-align: left;
 }
 
+
 .padding{
     margin: 20px;
 }
@@ -125,29 +141,72 @@ div {
 .padding-b-and-t{
     margin: 20px 0px;
 }
+.padding-r-and-l{
+    margin: 0px 20px;
+}
 
 /*
 scroll-1,2 はそれぞれメッセージ表示画面，下書き画面のスクロールに関する処理
 参考サイト：https://techacademy.jp/magazine/30983
+https://blog.8bit.co.jp/?p=16446
 */
-.scroll-1 {
-    width: 600px;
-    height: 40vh;
-    overflow: scroll;
-    border: rgb(255, 167, 201) 5px solid;
+
+.scrollArea{
+    width: auto;
+    overflow: auto; /*scroll;*/
+    border: rgb(255, 167, 201) 4px solid;
     overflow-x: hidden;
+    /*border-radius: 10px;*/
+}
 
+.scroll-1 {
+    height: 50vh;
   }
-
 
 .scroll-2 {
-    width: 600px;
-    height: 20vh;
-    overflow: scroll;
-    border: rgb(255, 167, 201) 5px solid;
-    overflow-x: hidden;
+    height: 15vh;
   }
 
-  .title{
-      height: 10vh;
-  }
+/*スクロールバーの横幅指定*/
+.scrollArea.deco::-webkit-scrollbar {
+    width: 15px;
+}
+/*スクロールバーの背景色・角丸指定*/
+.scrollArea.deco::-webkit-scrollbar-track {
+  border-radius: 10px;
+	background: #f2f2f2;
+}
+/*スクロールバーの色・角丸指定*/
+.scrollArea.deco::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+	background:#9b9b9b;
+}
+/*タイトル画像設定*/
+.title{
+    height: 10vh;
+}
+
+.menu-bar{
+    background-color:  rgb(255, 50, 101);/*bg-danger */
+}
+
+/* 吹き出し本体 */
+.balloon{
+  position: relative;
+  width: 80px;
+  padding: 20px;
+}
+
+/* beforeで三角を表現 */
+.balloon::before{
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: -15px;
+  display: block;
+  width: 0;
+  height: 0;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid #fff3ad;
+  border-left: 15px solid transparent;
+}
