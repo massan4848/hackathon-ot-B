@@ -3,6 +3,7 @@
  */
 body {
     font: 14px "Lucida Grande", Meiryo, Helvetica, Arial, sans-serif;
+    background-color: rgb(255, 234, 249);
 }
 
 a {
@@ -20,7 +21,7 @@ div {
  * ボタンの共通設定
  */
 .common-button {
-
+    border-radius: 5px;
 }
 
 /*
@@ -62,11 +63,16 @@ div {
 }
 
 .room-publish_button {
+    height: 30px;
+    border: 2px solid rgb(255, 15, 135);
+    vertical-align:bottom;
 
 }
 
 .room-memo_button {
-
+    height: 30px;
+    border: 2px solid rgb(255, 15, 135);
+    vertical-align:bottom;
 }
 
 .room-thread {
@@ -84,8 +90,8 @@ div {
 /*メッセージを書く欄に関する*/
 #input_plural-message input.form-control {
     display: inline-block;
-    width: 500px;
-    height: 34px;
+    width: 600px;
+    height: 30px;
     padding: 6px 12px;
     font-size: 14px;
     color: #555;
@@ -95,7 +101,7 @@ div {
 #input_plural input.form-control {
     display: inline-block;
     width: 400px;
-    height: 34px;
+    height: 30px;
     padding: 6px 12px;
     font-size: 14px;
     color: #555;
@@ -124,9 +130,9 @@ scroll-1,2 はそれぞれメッセージ表示画面，下書き画面のスク
 */
 .scroll-1 {
 
-    width: 700px;
+    width: 600px;
   
-    height: 400px;
+    height: 40vh;
   
     overflow: scroll;
   
@@ -139,9 +145,9 @@ scroll-1,2 はそれぞれメッセージ表示画面，下書き画面のスク
 
 .scroll-2 {
 
-    width: 700px;
+    width: 600px;
   
-    height: 200px;
+    height: 20vh;
   
     overflow: scroll;
   
@@ -149,4 +155,8 @@ scroll-1,2 はそれぞれメッセージ表示画面，下書き画面のスク
 
     overflow-x: hidden;
   
+  }
+
+  .title{
+      height: 10vh;
   }

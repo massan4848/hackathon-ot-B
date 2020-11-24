@@ -87,6 +87,16 @@ $(document).keypress(function (event) {
     }
 });
 
+//昇順降順ボタンの挙動
+function up_down(){
+    const updown = document.getElementById("sort-select");
+    if(updown.value==="up"){
+        updown.value = "down";
+    }else if(updown.value==="down"){
+        updown.value = "up";
+    }
+}
+
 // サーバから受信した投稿メッセージを画面上に表示する
 socket.on('receiveMessageEvent', function (data) {
     const sortValue = $("option:selected").val()
