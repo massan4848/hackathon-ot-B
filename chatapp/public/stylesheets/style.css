@@ -59,7 +59,6 @@ div {
 }
 
 .room-submit {
-
 }
 
 .room-publish_button {
@@ -86,11 +85,14 @@ div {
 .room-exit_button {
 
 }
+.message_inline{
+    display: inline-block;
+    vertical-align:bottom;
+}
 
 /*メッセージを書く欄に関する*/
 #input_plural-message input.form-control {
-    display: inline-block;
-    width: 600px;
+    width: 450px;
     height: 30px;
     padding: 6px 12px;
     font-size: 14px;
@@ -129,32 +131,21 @@ scroll-1,2 はそれぞれメッセージ表示画面，下書き画面のスク
 参考サイト：https://techacademy.jp/magazine/30983
 */
 .scroll-1 {
-
     width: 600px;
-  
     height: 40vh;
-  
     overflow: scroll;
-  
     border: rgb(255, 167, 201) 5px solid;
-
     overflow-x: hidden;
-  
+
   }
 
 
 .scroll-2 {
-
     width: 600px;
-  
     height: 20vh;
-  
     overflow: scroll;
-  
     border: rgb(255, 167, 201) 5px solid;
-
     overflow-x: hidden;
-  
   }
 
   .title{
