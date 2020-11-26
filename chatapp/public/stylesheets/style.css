@@ -208,23 +208,48 @@ https://blog.8bit.co.jp/?p=16446
     background-color:  rgb(255, 50, 101);/*bg-danger */
 }
 
+/*参考サイトhttps://blog.codecamp.jp/css_balloon*/
 /* 吹き出し本体 */
 .balloon{
-  position: relative;
-  width: 80px;
-  padding: 20px;
-}
+    position: relative;
+    padding: 10px;
+    background-color: #fff3ad;
+   /* display: inline-block;      横幅を自動で変更 */
+    float:right;
+    border-radius: 10px;
+  }
+  
+  .balloon::before{
+    content: '';
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    right: 10px;
+    bottom: -15px;
+    border-top: 15px solid #fff3ad;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+  }
 
-/* beforeで三角を表現 */
-.balloon::before{
-  content: '';
-  position: absolute;
-  left: 20px;
-  top: -15px;
-  display: block;
-  width: 0;
-  height: 0;
-  border-right: 15px solid transparent;
-  border-bottom: 15px solid #fff3ad;
-  border-left: 15px solid transparent;
-}
+  .balloon2{
+    position: relative;
+    padding: 10px;
+    background-color: lightcyan;
+   /* display: inline-block;      横幅を自動で変更 */
+    float:left;
+    border-radius: 10px;
+  }
+  
+  .balloon2::before{
+    content: '';
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    left: -10px;
+    top: 10px;
+    border-right: 15px solid lightcyan;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+  }

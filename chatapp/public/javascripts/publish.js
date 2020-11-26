@@ -113,15 +113,19 @@ socket.on('receiveMessageEvent', function (data) {
         if (array.length && sortValue === "down") {
         const index = id_number(parseInt($(array[0]).attr("id"))) + 1
         if (data.userName === myName) {
+            //$('#thread').prepend(`<p id=${index} class="balloon padding">` + paper + '</p>');
             $('#thread').prepend(`<p id=${index} class="mycomment">` + paper + '</p>');
         } else {
+            //$('#thread').prepend(`<div id=${index} class="balloon2 padding">` + paper + '</div>');
             $('#thread').prepend(`<p id=${index} class="yourcomment">` + paper + '</p>');
         }
     } else if (array.length && sortValue === "up") {
         const index = id_number(parseInt($(array[array.length - 1]).attr("id"))) + 1
         if (data.userName === myName) {
+            //('#thread').prepend(`<div id=${index} class="balloon padding">` + paper + '</div>');
             $('#thread').append(`<p id=${index} class="mycomment">` + paper + '</p>');
         } else {
+            //$('#thread').prepend(`<div id=${index} class="balloon2 padding">` + paper + '</div>');
             $('#thread').append(`<p id=${index} class="yourcomment">` + paper + '</p>');
         }
     } else {
