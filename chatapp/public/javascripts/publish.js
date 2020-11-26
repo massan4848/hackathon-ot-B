@@ -61,11 +61,11 @@ socket.on('renameReceiveMessageEvent', function (data) {
 
 
 $('#sort-select').change(function () {
-    const value = $("option:selected").val();
+    const value = $("option:selected",this).val();
     const array = Array.from($('#thread').children())
     const first = $(array[0]).attr("id")
     const last = $(array[array.length - 1]).attr("id")
-
+    console.log(first,last,value,array);
     if (value === "up" && first > last) {
         $('#thread').empty()
         $.each(array.reverse(), function (index, element) {
@@ -79,6 +79,14 @@ $('#sort-select').change(function () {
     }
 })
 
+// Enterキーを押したとき投稿が送信されるようにする処理
+$(document).keypress(function (event) {
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if (keycode == '13') {
+        publish();
+    }
+});
+
 //昇順降順ボタンの挙動
 function up_down(){
     const updown = document.getElementById("sort-select");
@@ -91,7 +99,7 @@ function up_down(){
 
 // サーバから受信した投稿メッセージを画面上に表示する
 socket.on('receiveMessageEvent', function (data) {
-    const sortValue = $("option:selected").val()
+    const sortValue = $("option:selected",'#sort-select').val()
     const array = Array.from($('#thread').children())
     const myName = $('#userName').val();
     //通知音
@@ -101,25 +109,26 @@ socket.on('receiveMessageEvent', function (data) {
     if($('#thread .defo').length!=0){
         $('#thread .defo').remove();
     }
-    if (array.length && sortValue === "down") {
-        const index = parseInt($(array[0]).attr("id")) + 1
+    const paper = data.userName + 'さん：' + data.message + `<font size = "1">` + " " + data.now + '</font>'
+        if (array.length && sortValue === "down") {
+        const index = id_number(parseInt($(array[0]).attr("id"))) + 1
         if (data.userName === myName) {
-            $('#thread').prepend(`<p id=${index} class="yourcomment">` + data.userName + 'さん：' + data.message + `<font size = "1">` + " " + data.now + '</font>' + '</p>');
+            $('#thread').prepend(`<p id=${index} class="mycomment">` + paper + '</p>');
         } else {
-            $('#thread').prepend(`<p id=${index} class="yourcomment">` + data.userName + 'さん：' + data.message + `<font size = "1">` + " " + data.now + '</font>' + '</p>');
+            $('#thread').prepend(`<p id=${index} class="yourcomment">` + paper + '</p>');
         }
     } else if (array.length && sortValue === "up") {
-        const index = parseInt($(array[array.length - 1]).attr("id")) + 1
+        const index = id_number(parseInt($(array[array.length - 1]).attr("id"))) + 1
         if (data.userName === myName) {
-            $('#thread').append(`<p id=${index} class="mycomment">` + data.userName + 'さん：' + data.message + `<font size = "1">` + " " + data.now + '</font>' + '</p>');
+            $('#thread').append(`<p id=${index} class="mycomment">` + paper + '</p>');
         } else {
-            $('#thread').append(`<p id=${index} class="yourcomment">` + data.userName + 'さん：' + data.message + `<font size = "1">` + " " + data.now + '</font>' + '</p>');
+            $('#thread').append(`<p id=${index} class="yourcomment">` + paper + '</p>');
         }
     } else {
         if (data.userName === myName) {
-            $('#thread').prepend('<p id=1 class="mycomment">' + data.userName + 'さん：' + data.message + `<font size = "1">` + " " + data.now + '</font>' + '</p>');
+            $('#thread').prepend('<p id=1 class="mycomment">' + paper + '</p>');
         } else {
-            $('#thread').prepend('<p id=1 class="yourcomment">' + data.userName + 'さん：' + data.message + `<font size = "1">` + " " + data.now + '</font>' + '</p>');
+            $('#thread').prepend('<p id=1 class="yourcomment">' + paper + '</p>');
         }
     }
     // 投稿した後に投稿文を空にする
@@ -147,4 +156,9 @@ function roomchange(data){
     if(data === "room01") $("#roomstat").text("現在部屋01です");
     else if(data === "room02") $("#roomstat").text("現在部屋02です");
     else $("#roomstat").text("現在入室していません");
+}
+
+function id_number(x){
+    if(isNaN(x)) return  0;
+    return x;
 }

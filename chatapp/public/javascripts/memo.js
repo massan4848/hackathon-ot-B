@@ -20,8 +20,8 @@ function memo() {
         i++;
         var memoMessage = '<div id="input_plural" class="padding">\
             <input type="text" class="form-control" id="memo' + memoId + '" value="'+ message +'">\
-            <input type="image" src="../img/send.jpg" id="memo' + postId + '" class="add pluralBtn common-button room-publish_button">\
-            <input type="image" src="../img/delete.jpg" class="del pluralBtn common-button room-memo_button">\
+            <img src="../img/send.jpg" id="memo' + postId + '" class="add pluralBtn common-button room-publish_button">\
+            <img src="../img/delete.jpg" class="del pluralBtn common-button room-memo_button">\
         </div>'
         $('#memo-thread').prepend(memoMessage);
         // 投稿した後に投稿文を空にする
