@@ -3,24 +3,15 @@
         <img src="../img/chatLogo.png" class="title">
     </div>
 
-    <canvas id="canvas"></canvas>
-
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@latest/build/qrcode.min.js"></script>
-    <script>
-    QRCode.toCanvas(document.getElementById('canvas'), 'http://3.114.101.35:10069/guest', function (error) {
-        if (error) console.error(error)
-        console.log('success!');
-    })
-    </script>
-    <div class="row">
+    <div class="row login-form-parent">
         <form method="post"
-            action="/room">
+            action="/room" id="form">
             <div class="index-user_name">
                 ユーザ名
                 <input type="text form-control"
                     id="userName"
                     name="userName"
-                    class="index-user_name_text">
+                    class="index-user_name_text ">
             </div>
             <div class="index-enter">
                 <input type="button"
@@ -29,7 +20,25 @@
                     onclick="enter();">
             </div>
         </form>
+        
+    </div>
+    <div class="qrcode">
+        <button type="button" class="btn btn-primary common-button index-enter_button padding-b-and-t" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <i class="fas fa-qrcode"></i>
+         QRコードを表示
+        </button>
+        <div class="collapse" id="collapseExample">
+        <canvas id="canvas"></canvas><br>
+        スマホで入れるよ！
+        </div>
     </div>
 </div>
 
 <script src="/javascripts/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@latest/build/qrcode.min.js"></script>
+    <script>
+    QRCode.toCanvas(document.getElementById('canvas'), 'http://3.114.101.35:10069/guest', function (error) {
+        if (error) console.error(error)
+        console.log('success!');
+    })
+    </script>

@@ -27,6 +27,23 @@ div {
     margin: 20px;
 }
 
+.login-form-parent{
+    text-align: center;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#form {
+    display: flex;
+    align-items: center;
+}
+
+.qrcode{
+    text-align: center;
+}
+
 /*
  * ボタンの共通設定
  */
@@ -46,7 +63,7 @@ div {
 }
 
 .index-user_name_text {
-    width: 200px;
+    width: 300px;
 }
 
 .index-enter {
@@ -183,7 +200,8 @@ https://blog.8bit.co.jp/?p=16446
 }
 /*タイトル画像設定*/
 .title{
-    height: 10vh;
+    height: 15vh;
+    margin: 0 auto;
 }
 
 .menu-bar{
